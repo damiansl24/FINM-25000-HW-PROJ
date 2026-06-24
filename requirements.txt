@@ -3,3 +3,4 @@ matplotlib
 Streamlit
 alpaca-py
 jupyter
+dotenv
