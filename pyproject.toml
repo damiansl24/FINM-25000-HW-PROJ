@@ -1,7 +1,16 @@
 [project]
 name = "finm-hw-proj"
 version = "0.1.0"
-description = "Add your description here"
+description = "Repository for all hw and projects in the FINM-25000 course section 1"
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = []
+
+
+dependencies = [
+    "alpaca-py>=0.43.4",
+    "dotenv>=0.9.9",
+    "jupyter>=1.1.1",
+    "matplotlib>=3.11.0",
+    "pandas>=3.0.3",
+    "streamlit>=1.58.0",
+]
