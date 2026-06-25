@@ -34,20 +34,3 @@ def load_historical_data(sym: str | list[str], min_rez: int, start: str, end: st
     bars = client.get_stock_bars(request_params=request_params)
 
     return bars.df # type: ignore
-
-# For streaming live quotes / bids: this is from the documentation.
-'''
-from alpaca.data.live import StockDataStream
-
-
-wss_client = StockDataStream('api-key', 'secret-key')
-
-# async handler
-async def quote_data_handler(data):
-    # quote data will arrive here
-    print(data)
-
-wss_client.subscribe_quotes(quote_data_handler, "SPY")
-
-wss_client.run()
-'''
