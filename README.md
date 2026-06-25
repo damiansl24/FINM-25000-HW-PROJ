@@ -17,5 +17,5 @@ cp .env.example .env
 then go to the .env file, paste in the alpaca API key and
 alpaca secret key. Everything should work after that.
 
-## Demo Video
-[Watch here](https://drive.google.com/file/d/1hWR_hTt0Y__t3yxEJcbD8B6wGV6otLBr/view?usp=sharing)
+## Group Members:
+Damian, Palaash, Adam Gurevich, Ian Choe

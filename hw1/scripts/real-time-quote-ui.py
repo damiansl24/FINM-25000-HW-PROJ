@@ -15,9 +15,9 @@ import time
 from datetime import datetime, timedelta
 
 import pandas as pd
-import plotly.graph_objects as go
+import plotly.graph_objects as go #type: ignore
 import streamlit as st
-from plotly.subplots import make_subplots
+from plotly.subplots import make_subplots #type: ignore
 
 from alpaca.data.historical import StockHistoricalDataClient
 from alpaca.data.live import StockDataStream
@@ -116,7 +116,7 @@ for k, v in {
 with st.sidebar:
     st.title("⚙️  Controls")
 
-    ticker  = st.text_input("Ticker", value=st.session_state.symbol).upper().strip()
+    ticker  = st.text_input("Ticker", value=st.session_state.symbol).upper().strip() #type: ignore
     days    = st.selectbox("History (days)", [30, 60, 90], index=0)
     min_rez = st.selectbox("Bar resolution (minutes)", [5, 1], index=0)
 
