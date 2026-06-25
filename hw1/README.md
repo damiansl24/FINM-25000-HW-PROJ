@@ -39,7 +39,5 @@ The src directory contains all functions and programs, while the
 scripts directory contains all python executables for this 
 assignment. 
 
-Tasks:
-1. Data Connector Module -> Damian
-2. Historical data viewer -> Damian
-3. Real time quote UI
+Group members:
+- Damian, Palaash, Ian Choe, Adam Gurevich
