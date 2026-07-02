@@ -76,3 +76,9 @@ The script will create:
 - The script uses daily bars and defaults to a five-year lookback.
 - No extra package was added for HW2; it uses the shared repository setup.
 - Alpaca credentials must be present in the repository-level `.env` file.
+
+- ## Demo Video
+
+[Watch here](https://drive.google.com/file/d/14AU4n59oLROb8C1jaEj0ZS9vCjzCBC2a/view?usp=sharing)
+
+
