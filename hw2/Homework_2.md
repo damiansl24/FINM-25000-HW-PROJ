@@ -135,7 +135,7 @@ Include:
 | Mean Reversion | | | | |
 | Custom Strategy | | | | |
 
-> Note: This submission will count for everyone in your Part I - Group group.
+> Note: This submission will count for everyone in your group.
 
 ### 8. GitHub Submission
 
