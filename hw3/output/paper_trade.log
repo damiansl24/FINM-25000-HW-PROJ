@@ -1,0 +1,9 @@
+2026-07-08 23:36:08,218 | INFO | === ALPACA PAPER TRADING — NO REAL MONEY IS USED ===
+2026-07-08 23:36:08,471 | INFO | Ticker=NVDA  as-of=2026-07-07  last_close=$196.97
+2026-07-08 23:36:08,472 | INFO | Model P(next-day up) = 0.546  ->  signal = FLAT (threshold 0.60)
+2026-07-08 23:36:08,638 | INFO | Account: status=AccountStatus.ACTIVE  equity=$100000  buying_power=$400000  (PAPER)
+2026-07-08 23:36:08,695 | INFO | Current position: none in NVDA
+2026-07-08 23:36:08,696 | INFO | --demo set: forcing a BUY for demonstration despite a FLAT signal.
+2026-07-08 23:36:08,737 | INFO | SUBMITTED BUY  NVDA  ~$80000.00 notional  (order id f8bb7c65-376a-4e66-be95-65b01297d0a4, status OrderStatus.ACCEPTED)
+2026-07-08 23:36:08,738 | INFO | Done. Dashboard: https://app.alpaca.markets/paper/dashboard/overview
+2026-07-08 23:36:08,738 | INFO | *** This is PAPER TRADING ONLY — no real money is used. ***
