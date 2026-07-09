@@ -4,3 +4,5 @@ Streamlit
 alpaca-py
 jupyter
 dotenv
+scikit-learn
+joblib 
