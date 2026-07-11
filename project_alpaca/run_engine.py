@@ -4,7 +4,7 @@ Usage (from project_alpaca/, with .env configured):
     python run_engine.py
 
 Run the dashboard alongside it in another terminal:
-    streamlit run ui/app.py
+    python -m streamlit run ui/app.py
 """
 from __future__ import annotations
 

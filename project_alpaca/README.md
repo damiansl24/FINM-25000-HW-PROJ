@@ -59,7 +59,7 @@ peers over the past month tend to keep outperforming over the following weeks.
 Two independent processes share one SQLite database (WAL mode):
 - **Engine** (`run_engine.py`) — writes bars, signals, orders, snapshots;
   polls the `control` table for commands.
-- **UI** (`streamlit run ui/app.py`) — reads everything; writes only
+- **UI** (`python -m streamlit run ui/app.py`) — reads everything; writes only
   `control` (start/pause/kill + risk-parameter overrides, applied by the
   engine on its next cycle without a restart).
 
@@ -95,7 +95,7 @@ python run_backtest.py --start 2025-01-01
 python run_engine.py
 
 # 4. dashboard — terminal 2
-streamlit run ui/app.py
+python -m streamlit run ui/app.py
 
 # emergency: flatten everything even if engine/UI are down
 python scripts/flatten.py

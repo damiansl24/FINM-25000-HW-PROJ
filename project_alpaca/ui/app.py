@@ -1,7 +1,7 @@
 """Project Alpaca dashboard.
 
 Run from project_alpaca/:
-    streamlit run ui/app.py
+    python -m streamlit run ui/app.py
 
 Reads everything from the shared SQLite database; writes only the control
 table (start/pause/kill commands and risk-parameter overrides).
