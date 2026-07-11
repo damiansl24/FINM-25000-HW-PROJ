@@ -1,0 +1,27 @@
+# Project Alpaca configuration.
+# API keys do NOT go here -- they live in .env (see .env.example).
+
+universe: [AAPL, MSFT, NVDA, GOOGL, AMZN, META, TSLA, AVGO, SPY, QQQ]
+
+strategy:
+  lookback_days: 20        # trailing-return window for momentum ranking
+  skip_days: 1             # skip most recent day (avoids short-term reversal noise)
+  n_long: 3                # number of top-ranked names to hold long
+  n_short: 3               # number of bottom-ranked names to hold short
+  gross_exposure: 1.0      # total |long| + |short| notional as fraction of equity
+  rebalance_time_et: "10:00"
+
+data:
+  poll_interval_sec: 60
+  feed: iex                # free-tier data feed
+  db_path: db/trading.db   # relative to project root
+
+risk:
+  max_position_pct: 0.25   # per-asset notional <= 25% of equity
+  max_gross_leverage: 1.5  # gross notional <= 1.5x equity
+  stop_loss_pct: 0.05      # close a position at a 5% unrealized loss
+  max_daily_loss_pct: 0.03 # kill switch: flatten + halt if equity drops 3% intraday
+
+backtest:
+  slippage_bps: 5
+  initial_equity: 100000
