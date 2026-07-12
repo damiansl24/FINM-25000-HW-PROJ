@@ -113,7 +113,8 @@ All parameters are explicit in [`config/config.yaml`](config/config.yaml).
 - The strategy excludes the currently forming hourly bar. Live decisions only
   use completed information.
 - Every opening order receives the age of its pair's latest minute bar. Unknown
-  or older-than-180-second prices are blocked.
+  or older-than-10-minute prices are blocked. The tolerance accounts for pairs
+  that do not produce a bar during every individual minute.
 - SQLite records bars, signals, orders, positions, equity, control state, and
   risk events for both the engine and UI.
 
