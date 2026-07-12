@@ -48,7 +48,7 @@ class RiskConfig:
     min_order_notional: float = 5.0
     stop_loss_pct: float = 0.08
     max_daily_loss_pct: float = 0.04
-    max_data_age_sec: int = 600
+    max_data_age_sec: int = 180
     stop_cooldown_min: int = 360
 
 

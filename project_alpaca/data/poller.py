@@ -19,6 +19,7 @@ class PollResult:
     hourly_bars: int = 0
     latest_ts: datetime | None = None
     errors: tuple[str, ...] = ()
+    live_ok: bool = False
 
 
 class Poller:
@@ -57,7 +58,13 @@ class Poller:
                 hour_count,
                 latest.isoformat() if latest else "n/a",
             )
-        return PollResult(minute_count, hour_count, latest, errors)
+        return PollResult(
+            minute_bars=minute_count,
+            hourly_bars=hour_count,
+            latest_ts=latest,
+            errors=errors,
+            live_ok=minute_error is None,
+        )
 
     def _poll_timeframe(
         self, timeframe: str, initial_lookback: timedelta, overlap: timedelta
@@ -87,4 +94,3 @@ class Poller:
         count = store.insert_bars(self.conn, bars)
         latest = max((bar.ts for bar in bars), default=None)
         return count, latest, None
-

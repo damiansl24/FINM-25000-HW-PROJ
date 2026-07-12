@@ -75,11 +75,10 @@ bar that is currently forming is excluded from signal calculation, so a live
 decision only uses completed information.
 
 The Age column is also part of risk management. Before new exposure is opened,
-the engine checks the timestamp of that pair's latest minute bar. If the age is
-unknown or above 10 minutes, the order is blocked. The 10-minute tolerance is
-needed because Alpaca may not emit a minute bar for a pair with no trades in
-that minute, while genuinely stale feeds still fail safe instead of trading an
-old price.
+the engine checks when the live-data endpoint last responded successfully. If
+that pipeline age is unknown or above 180 seconds, the order is blocked. This
+distinguishes a real feed outage from a quiet minute in which a pair simply had
+no trades and therefore produced no new bar.
 
 SQLite is a deliberate tradeoff. It is easy to inspect, requires no separate
 server, and supports our one-writer, one-reader pattern using WAL mode. It would

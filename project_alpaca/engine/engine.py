@@ -39,6 +39,7 @@ class Engine:
         log.info("crypto engine starting against Alpaca paper trading")
         control.set_status(self.conn, "starting")
         while True:
+            cycle_started = time.monotonic()
             try:
                 self._cycle()
             except KeyboardInterrupt:
@@ -51,7 +52,8 @@ class Engine:
                 control.set_status(self.conn, "error - recovering")
             if once:
                 return
-            time.sleep(self.base_cfg.data.poll_interval_sec)
+            elapsed = time.monotonic() - cycle_started
+            time.sleep(max(0.0, self.base_cfg.data.poll_interval_sec - elapsed))
 
     def _cycle(self) -> None:
         cfg = self._effective_config()
@@ -66,6 +68,12 @@ class Engine:
 
         control.set_status(self.conn, "running - 24/7 crypto monitoring")
         poll_result = self.poller.poll_once()
+        if poll_result.live_ok:
+            control.set_value(
+                self.conn,
+                "last_live_data_poll_ts",
+                datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            )
         for error in poll_result.errors:
             store.record_risk_event(self.conn, "data_error", error)
 
@@ -235,14 +243,22 @@ class Engine:
         return apply_overrides(cfg, control.get_overrides(self.conn))
 
     def _data_ages(self, cfg: Config) -> dict[str, float]:
+        """Age of the last successful live-data poll for symbols with a price.
+
+        Crypto pairs may have no bar in a minute with no trades. Pipeline
+        freshness therefore comes from the successful Alpaca response, while
+        the existence of a stored price is still checked per symbol.
+        """
         now = datetime.now(timezone.utc)
         timestamps = store.get_latest_bar_times(
             self.conn, cfg.universe, cfg.data.live_timeframe
         )
-        return {
-            symbol: max(0.0, (now - timestamp.astimezone(timezone.utc)).total_seconds())
-            for symbol, timestamp in timestamps.items()
-        }
+        poll_value = control.get_value(self.conn, "last_live_data_poll_ts")
+        if not poll_value:
+            return {}
+        poll_time = datetime.fromisoformat(poll_value).astimezone(timezone.utc)
+        poll_age = max(0.0, (now - poll_time).total_seconds())
+        return {symbol: poll_age for symbol in timestamps}
 
     def _day_start_equity(self, state: PortfolioState) -> float:
         today = datetime.now(timezone.utc).strftime("%Y-%m-%d")
@@ -291,4 +307,3 @@ class Engine:
             f"finm-c-{datetime.now(timezone.utc):%Y%m%d%H%M%S}-"
             f"{compact}-{uuid.uuid4().hex[:6]}"
         )
-

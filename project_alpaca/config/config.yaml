@@ -33,7 +33,7 @@ risk:
   min_order_notional: 5.00     # suppress tiny churn; exits are always allowed
   stop_loss_pct: 0.08          # close a coin at an 8% unrealized loss
   max_daily_loss_pct: 0.04     # flatten and pause after a 4% UTC-day loss
-  max_data_age_sec: 600        # allow sparse crypto bars; still block >10-minute prices
+  max_data_age_sec: 180        # block openings if live data polling fails for 3 minutes
   stop_cooldown_min: 360       # no re-entry for six hours after a stop
 
 backtest:

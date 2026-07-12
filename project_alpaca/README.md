@@ -112,9 +112,10 @@ All parameters are explicit in [`config/config.yaml`](config/config.yaml).
   in-progress bar updates it without creating duplicates.
 - The strategy excludes the currently forming hourly bar. Live decisions only
   use completed information.
-- Every opening order receives the age of its pair's latest minute bar. Unknown
-  or older-than-10-minute prices are blocked. The tolerance accounts for pairs
-  that do not produce a bar during every individual minute.
+- Every opening order checks the age of the last successful live-data poll.
+  Unknown or older-than-180-second pipeline data is blocked. This avoids
+  treating a no-trade minute as a feed outage while still failing safe when
+  Alpaca polling actually stops.
 - SQLite records bars, signals, orders, positions, equity, control state, and
   risk events for both the engine and UI.
 
