@@ -9,6 +9,10 @@ backtester, persistent monitoring, and a Streamlit operator dashboard.
 > Paper trading only. Never add real credentials to Git. The engine always
 > creates `TradingClient(..., paper=True)` and the completed `.env` is ignored.
 
+## 🎥 Video Walkthrough
+
+[Watch the demo video](https://drive.google.com/file/d/1Nefrp7A6XvMcOQ31qtebbiN1c2QzSbL0/view?usp=sharing)
+
 ## Project goal
 
 The goal is not to claim that a simple signal can predict crypto perfectly.
