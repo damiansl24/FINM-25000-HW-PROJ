@@ -1,0 +1,11 @@
+alpaca-py>=0.43.4
+pandas>=2.2
+numpy>=1.26
+PyYAML>=6.0
+python-dotenv>=1.0
+streamlit>=1.45
+plotly>=6.0
+matplotlib>=3.9
+pytest>=8.0
+tzdata>=2025.1
+
